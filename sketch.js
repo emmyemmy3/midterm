@@ -1,17 +1,40 @@
 let ball;
 let slider;
-let answers = ["It is certain.", "It is decidedly so.", "Without a doubt.", "Yes definitely", "You may rely on it.", "As I see it, yes.", "Most likely.", "Outlook good.", "Yes.", "Signs point to yes.", "Reply hazy, try again.", "Ask again later.", "Better not tell you now", "Cannot predict now.", ""]
+let button;
+let resetButton;
+let answers = ["It is certain.", "It is decidedly so.", "Without a doubt.", "Yes definitely", "You may rely on it.", "As I see it, yes.", "Most likely.", "Outlook good.", "Yes.", "Signs point to yes.", "Reply hazy, try again.", "Ask again later.", "Better not tell you now", "Cannot predict now.", "Concentrate and ask again.", "Don't count on it.", "My reply is no.", "My sources say no.", "Outlook not so good.", "Very doubtful."]
 
 
 function setup() {
   createCanvas(700, 500);
+//slider features
   slider = createSlider(1, 3, 2);
+  slider.position(280, 60);
+  
   ball = new eightBall();
+  
+  let inp = createInput('Ask a yes or no question here and shake');
+  inp.position(215, 30);
+  inp.size(250);
+  
+  button = createButton('reveal!')
+  button.position (410, 89);
+  button.mouseClicked(response);
+  
+  resetButton = createButton('TRY AGAIN?');
+  resetButton.position (600, 450);
+  resetButton.mouseClicked(setup);
+  
 }
 
 function draw() {
   background(150);
- 
+  noStroke();
+  fill(0);
+  textSize(20)
+  text('Then, press reveal!', 220, 105);
+  
+  
 //shake the magic 8 ball using the slider
  if (slider.value() == 1){
    ball.leftBall();
@@ -22,10 +45,30 @@ function draw() {
  if (slider.value() == 2){
   ball.show();
 }
+ //if (button.mousePressed) {
+  // ball.response();
+ //}
 }
 
+ function  response() {
+//outer circle 
+  noStroke();
+  fill(20);
+  ellipse(350, 300, 350);
+//inner circle  
+  fill(40);
+  noStroke();
+  ellipse(350, 300, 190);
+//triangle
+  fill(100,10,250);
+  noStroke();
+  triangle(275, 250, 425, 250, 350, 375);
+//answer
+  text('fff',350, 350);
+  } 
    
-   
+
+
 class eightBall{
   constructor (){   
   }
@@ -114,7 +157,7 @@ leftBall () {
   ellipse(450, 300, 350); 
 //inner circle
   fill(220);
-  noStroke;
+  noStroke();
   ellipse(450, 300, 190);
 //number 8
   stroke(20);
@@ -143,5 +186,22 @@ leftBall () {
   line(418, 310, 418, 340);
   line(482, 310, 482, 340);
   }
+  
+response() {
+//outer circle 
+  noStroke();
+  fill(20);
+  ellipse(350, 300, 350);
+//inner circle  
+  fill(40);
+  noStroke();
+  ellipse(350, 300, 190);
+//triangle
+  fill(100,10,250);
+  noStroke();
+  triangle(275, 250, 425, 250, 350, 375);
+//answer
+  text('fff',350, 350);
+  } 
 }
 
