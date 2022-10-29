@@ -9,8 +9,6 @@ let answers = ["It is certain.", "It is decidedly so.", "Without a doubt.",
 "My reply is no.", "My sources say no.","Outlook not so good.",
  "Very doubtful."]
 
-
-
 function setup() {
   createCanvas(700, 500);
 //random answer
@@ -18,13 +16,13 @@ function setup() {
 
 //slider features
   slider = createSlider(1, 3, 2);
-  slider.position(280, 60);
+  slider.position(285, 60);
   
   ball = new eightBall();
   
   //Input where user types their question
   let inp = createInput('Ask a yes or no question here and shake');
-  inp.position(215, 30);
+  inp.position(220, 20);
   inp.size(250);
   
   //button that calls the answer funtion
@@ -39,11 +37,14 @@ function setup() {
 }
 
 function draw() {
-  background(150);
+  background(102,178,255);
   noStroke();
   fill(0);
   textSize(20)
-  text('Then, hold reveal!', 220, 105);
+  text('Then, hold reveal!', 265, 105);
+
+  textSize(10);
+  text('Shake here', 325, 55);
   
   
 //shake the magic 8 ball using the slider
@@ -56,10 +57,19 @@ if (slider.value() == 1){
  if (slider.value() == 2){
   ball.show();
 }
+//hold the button to reveal the answer
 if (mouseIsPressed && mouseX > 450 && mouseY < 107 && mouseX < 489 
-  && mouseY > 92) {
+  && mouseY > 92 && slider.value() == 2) {
   ball.response();
 } 
+if (mouseIsPressed && mouseX > 450 && mouseY < 107 && mouseX < 489 
+  && mouseY > 92 && slider.value() == 1) {
+   ball.responseLeft();
+}
+if (mouseIsPressed && mouseX > 450 && mouseY < 107 && mouseX < 489 
+   && mouseY > 92 && slider.value() == 3) {
+    ball.responseRight();
+ }
 }
 
 
@@ -68,7 +78,6 @@ class eightBall{
   }
   
  show () { 
-//THE WHOLE BALL
 //outer circle
   noStroke();
   fill(20);
@@ -107,7 +116,6 @@ class eightBall{
   
   
 leftBall () {
-  //THE WHOLE BALL
 //outer circle
   noStroke();
   fill(20);
@@ -200,5 +208,45 @@ response() {
   fill(255);
   text(answer,300, 280);
   } 
+
+responseLeft() {
+//outer circle 
+  noStroke();
+  fill(20);
+  ellipse(250, 300, 350);
+//inner circle
+  fill(40);
+  noStroke();
+  ellipse(250, 300, 190);
+//triangle
+  fill(100,10,250);
+  noStroke();
+  triangle(175, 250, 325, 250, 250, 375);
+//answer
+  noStroke();
+  textSize(10);
+  fill(255);
+  text(answer,200, 280);
+}
+
+responseRight() {
+//outer circle 
+  noStroke();
+  fill(20);
+  ellipse(450, 300, 350);
+//inner circle
+  fill(40);
+  noStroke();
+  ellipse(450, 300, 190);
+//triangle
+  fill(100,10,250);
+  noStroke();
+  triangle(375, 250, 525, 250, 450, 375);
+//answer
+  noStroke();
+  textSize(10);
+  fill(255);
+  text(answer,400, 280);
+}
 }
 
