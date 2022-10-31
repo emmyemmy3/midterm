@@ -12,6 +12,7 @@ let answers = ["It is certain.", "It is decidedly so.", "Without a doubt.",
 function setup() {
   createCanvas(700, 500);
 //random answer
+//inspired by youtuber UrbanAtWork
   answer = answers[round(random(answers.length - 1))];
 
 //slider features
